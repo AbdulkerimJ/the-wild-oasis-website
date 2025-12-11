@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
-import Logo from "./components/Logo";
-import {Navigation} from "./components/Navigation";
-
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: {
@@ -17,6 +15,8 @@ export const metadata: Metadata = {
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
+
 });
 
 export default function RootLayout({
@@ -27,13 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${josefinSans.className} antialiased bg-primary-950 text-primary-100 `}
+        className={`${josefinSans.className} antialiased bg-primary-950 text-primary-100  min-h-screen flex flex-col`}
       >
-        <header>
-          <Logo />
-          <Navigation />
-        </header>
-        <main>{children}</main>
+        <Header />
+        <div className="flex-1">
+          <main className="max-w-7xl mx-auto px-4 sm:px-8 py-12 ">{children}</main>
+        </div>
       </body>
     </html>
   );

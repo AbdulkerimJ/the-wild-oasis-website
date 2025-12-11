@@ -1,11 +1,34 @@
 import Link from "next/link";
 
-export const Navigation = () => {
+export default function Navigation() {
   return (
-    <nav className="bg-gray-100 p-4 flex space-x-4">
-      <Link href="/about" className="text-gray-800 hover:text-gray-600">
-        About
-      </Link>
+    <nav className="z-10 w-full text-lg sm:w-auto sm:text-xl">
+      <ul className="flex justify-center gap-6 items-start sm:flex-row sm:gap-16 sm:items-center sm:justify-end">
+        <li>
+          <Link
+            href="/cabins"
+            className="hover:text-accent-400 transition-colors"
+          >
+            Cabins
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/about"
+            className="hover:text-accent-400 transition-colors"
+          >
+            About
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/account"
+            className="hover:text-accent-400 transition-colors"
+          >
+            Guest area
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
-};
+}
