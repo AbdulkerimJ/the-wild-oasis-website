@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <Header />
         <div className="flex-1">
-          <main className="max-w-7xl mx-auto px-4 sm:px-8 py-12 ">{children}</main>
+          <main className="max-w-7xl mx-auto px-4 sm:px-8 py-12">{children}</main>
         </div>
       </body>
     </html>
