@@ -1,10 +1,12 @@
 import CabinCard from "../_components/CabinCard";
-export default function Page() {
+import { getCabins } from "../_lib/data-service";
+import {Cabin} from "../_lib/types";
+export default async function Page() {
   // CHANGE
-  // const cabins = [];
+  const cabins: Cabin[] = await getCabins();
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto overflow-auto no-scrollbar">
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
         Our Luxury Cabins
       </h1>
