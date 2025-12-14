@@ -25,3 +25,13 @@
   --color-accent-950: #382814;
 }
 
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;        /* Firefox */
+    -ms-overflow-style: none;     /* IE / old Edge */
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;                /* Chrome / Safari */
+  }
+}

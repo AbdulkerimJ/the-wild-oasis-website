@@ -17,12 +17,12 @@ export default function Page() {
         Update your guest profile
       </h2>
 
-      <p className="text-lg mb-8 text-primary-200">
+      <p className="text-lg mb-4 text-primary-200">
         Providing the following information will make your check-in process
         faster and smoother. See you soon!
       </p>
 
-      <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+      <form className="bg-primary-900 py-6 px-8 text-lg flex gap-4 flex-col">
         <div className="space-y-2">
           <label>Full name</label>
           <input
