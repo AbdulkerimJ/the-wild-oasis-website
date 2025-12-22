@@ -1,6 +1,11 @@
 import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
+
+export const metadata = {
+  title: "Our Cabins",
+  description: "Explore our luxury cabins nestled in the Italian Dolomites.",
+};
 export default function Page() {
   return (
     <div className="max-w-7xl mx-auto overflow-auto no-scrollbar">
