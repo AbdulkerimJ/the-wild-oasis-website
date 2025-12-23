@@ -7,7 +7,7 @@ export default function AccountLayout({
 }) {
   return (
     <div className="grid grid-cols-[16rem_1fr] gap-8 h-full min-h-0 overflow-hidden">
-     <SideNavigation />
+      <SideNavigation />
       <div className="overflow-auto">{children}</div>
     </div>
   );
