@@ -1,5 +1,6 @@
 import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
+import { notFound } from "next/navigation";
 
 /////////////
 // GET
@@ -11,7 +12,10 @@ export async function getCabin(id: number) {
     .eq("id", id)
     .single();
 
-  if (error) throw new Error(`Cabin fetch failed: ${error.message}`);
+  if (error) {
+    console.error(error);
+    notFound();
+  }
   return data; // may be null if no row; caller should handle
 }
 

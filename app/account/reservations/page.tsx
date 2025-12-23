@@ -4,6 +4,7 @@ export const metadata = {
   description: "Manage your cabin reservations.",
 };
 
+
 export default function Page() {
   // CHANGE
   const bookings = [];
