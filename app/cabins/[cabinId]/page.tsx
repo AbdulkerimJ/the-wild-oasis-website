@@ -75,10 +75,11 @@ export default async function Page({ params }: PageProps) {
         </div>
       </div>
 
-      <div>
+      <div> 
         <h2 className="text-5xl font-semibold text-center">
           Reserve today. Pay on arrival.
         </h2>
+        
       </div>
     </div>
   );

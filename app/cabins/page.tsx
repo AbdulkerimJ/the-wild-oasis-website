@@ -1,12 +1,22 @@
 import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
+import { FilterType } from "../_lib/types";
+import { parseFilter } from "../_lib/types";
+import Filter from "../_components/Filter";
 
 export const metadata = {
   title: "Our Cabins",
   description: "Explore our luxury cabins nestled in the Italian Dolomites.",
 };
-export default function Page() {
+
+type PageProps = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function Page({ searchParams }: PageProps) {
+  const query = await searchParams;
+  const filter: FilterType = parseFilter(query?.capacity);
   return (
     <div className="max-w-7xl mx-auto overflow-auto no-scrollbar">
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -20,8 +30,11 @@ export default function Page() {
         away from home. The perfect spot for a peaceful, calm vacation. Welcome
         to paradise.
       </p>
-      <Suspense fallback={<Spinner />}>
-        <CabinList />
+      <div className="flex justify-end">
+       <Filter currentFilter={filter} />
+      </div>
+      <Suspense fallback={<Spinner />} key={filter}>
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
