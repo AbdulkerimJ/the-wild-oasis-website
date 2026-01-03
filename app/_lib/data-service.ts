@@ -228,3 +228,5 @@ export async function deleteBooking(id: number) {
   }
   return data;
 }
+
+export const wait = (seconds: number) => new Promise(resolve => setTimeout(resolve, seconds * 1000));
