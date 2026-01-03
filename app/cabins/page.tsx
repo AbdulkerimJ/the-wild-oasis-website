@@ -4,6 +4,7 @@ import Spinner from "../_components/Spinner";
 import { FilterType } from "../_lib/types";
 import { parseFilter } from "../_lib/types";
 import Filter from "../_components/Filter";
+import ReservationReminder from "../_components/ReservationReminder";
 
 export const metadata = {
   title: "Our Cabins",
@@ -31,10 +32,11 @@ export default async function Page({ searchParams }: PageProps) {
         to paradise.
       </p>
       <div className="flex justify-end">
-       <Filter currentFilter={filter} />
+        <Filter currentFilter={filter} />
       </div>
       <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
+        <ReservationReminder />
       </Suspense>
     </div>
   );

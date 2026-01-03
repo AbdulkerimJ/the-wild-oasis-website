@@ -9,7 +9,7 @@ function ReservationForm({cabin}: {cabin: Cabin}) {
   return (
     <div className="scale-[1.01]">
       <div className="bg-primary-800 text-primary-300 px-6 sm:px-12 lg:px-16 py-3 flex justify-between items-center text-sm sm:text-base">
-        <p>Logged in as {range?.from?.toLocaleDateString()} and {range?.to?.toLocaleDateString()} </p>
+        <p>Logged in as</p>
 
         {/* <div className='flex gap-4 items-center'>
           <img
