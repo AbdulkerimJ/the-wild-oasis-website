@@ -2,7 +2,7 @@
 import { Cabin } from "../_lib/types";
 import { useReservation } from "./context/ReservationContext";
 
-function ReservationForm({cabin}: {cabin: Cabin}) {
+function ReservationForm({cabin, user}: {cabin: Cabin, user: {name: string, email: string, image?: string}}) {
   const {range} = useReservation();
   const { maxCapacity } = cabin;
 
@@ -11,7 +11,7 @@ function ReservationForm({cabin}: {cabin: Cabin}) {
       <div className="bg-primary-800 text-primary-300 px-6 sm:px-12 lg:px-16 py-3 flex justify-between items-center text-sm sm:text-base">
         <p>Logged in as</p>
 
-        {/* <div className='flex gap-4 items-center'>
+      <div className='flex gap-4 items-center'>
           <img
             // Important to display google profile images
             referrerPolicy='no-referrer'
@@ -20,7 +20,7 @@ function ReservationForm({cabin}: {cabin: Cabin}) {
             alt={user.name}
           />
           <p>{user.name}</p>
-        </div> */}
+        </div>
       </div>
 
       <form className="bg-primary-900 py-8 sm:py-10 px-6 sm:px-12 lg:px-16 text-base sm:text-lg flex gap-5 flex-col">
