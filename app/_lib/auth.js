@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google"
+import Google from "next-auth/providers/google";
 
 const authConfig = {
   providers: [
@@ -8,6 +8,20 @@ const authConfig = {
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
   ],
-}
+  callbacks: {
+    // Only allow access when a user session exists
+    authorized({ auth, request }) {
+      return !!auth?.user;
+    },
+  },
+  pages: {
+    signIn: "/login",
+  }
+};
 
-export const {auth, handlers: {GET, POST}} = NextAuth(authConfig);
+export const {
+  auth,
+  signIn,
+  signOut,
+  handlers: { GET, POST },
+} = NextAuth(authConfig);
