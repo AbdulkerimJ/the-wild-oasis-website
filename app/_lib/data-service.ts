@@ -1,6 +1,7 @@
 import { eachDayOfInterval } from "date-fns";
 import { supabase } from "./supabase";
 import { notFound } from "next/navigation";
+import type { Country } from "./types";
 
 /////////////
 // GET
@@ -134,12 +135,12 @@ export async function getSettings() {
   return data;
 }
 
-export async function getCountries() {
+export async function getCountries(): Promise<Country[]> {
   try {
     const res = await fetch(
       "https://restcountries.com/v2/all?fields=name,flag"
     );
-    const countries = await res.json();
+    const countries: Country[] = await res.json();
     return countries;
   } catch {
     throw new Error("Could not fetch countries");
@@ -229,4 +230,5 @@ export async function deleteBooking(id: number) {
   return data;
 }
 
-export const wait = (seconds: number) => new Promise(resolve => setTimeout(resolve, seconds * 1000));
+export const wait = (seconds: number) =>
+  new Promise((resolve) => setTimeout(resolve, seconds * 1000));

@@ -1,7 +1,6 @@
-
 export type Cabin = {
   id: number;
-  created_at: string;      // or Date if you parse it
+  created_at: string; // or Date if you parse it
   name: string;
   maxCapacity: number;
   regularPrice: number;
@@ -15,3 +14,17 @@ export function parseFilter(value: string | string[] | undefined): FilterType {
   if (val === "small" || val === "medium" || val === "large") return val;
   return "all"; // fallback
 }
+export type Guest = {
+  id: number;
+  created_at: string;
+  fullName: string;
+  email: string;
+  nationalID: string | null;
+  nationality: string | null;
+  countryFlag: string | null;
+};
+
+export type Country = {
+  name: string;
+  flag: string;
+};
