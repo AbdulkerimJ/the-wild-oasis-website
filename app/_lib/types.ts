@@ -28,3 +28,14 @@ export type Country = {
   name: string;
   flag: string;
 };
+export type BookingParams = {
+  params: {
+    bookingId: string;
+  };
+};
+
+export type CabinParams = {
+  params: {
+    cabinId: string;
+  };
+};

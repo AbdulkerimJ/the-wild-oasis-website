@@ -2,7 +2,7 @@
 import type { ReactNode } from "react";
 import type { Guest } from "../_lib/types";
 import { updateGuest } from "../_lib/actions";
-import { useFormStatus } from "react-dom";
+import {SubmitButton} from "./SubmitButton";
 
 type UpdateProfileFormProps = {
   guest: Guest;
@@ -59,22 +59,14 @@ const UpdateProfileForm = ({ guest, children }: UpdateProfileFormProps) => {
       </div>
 
       <div className="flex justify-end items-center gap-6">
-        <UpdateProfileButton />
+        <SubmitButton pendingLabel = "Updating...">
+          Update Profile
+        </SubmitButton>
       </div>
     </form>
   );
 };
 
-const UpdateProfileButton = () => {
-  const { pending } = useFormStatus();
-  return (
-    <button
-      disabled={pending}
-      className="bg-accent-500 px-6 py-2 rounded text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
-    >
-      {pending ? "Updating..." : "Update Profile"}{" "}
-    </button>
-  );
-};
+
 
 export default UpdateProfileForm;

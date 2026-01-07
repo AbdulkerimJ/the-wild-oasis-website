@@ -58,10 +58,46 @@ export async function deleteReservation(bookingId) {
   if (!guestBookingIds.includes(bookingId)) {
     throw new Error("You can only delete your own reservations.");
   }
-  
-  const { error } = await supabase.from("bookings").delete().eq("id", bookingId);
 
-  if (error)
-    throw new Error("Booking could not be deleted");
+  const { error } = await supabase
+    .from("bookings")
+    .delete()
+    .eq("id", bookingId);
+
+  if (error) throw new Error("Booking could not be deleted");
   revalidatePath("/account/reservations");
+}
+
+export async function updateReservation(formData) {
+  const bookingId = Number(formData.get("bookingId"));
+  // 1. Authenticate user
+  const session = await auth();
+  if (!session) {
+    throw new Error("You must be logged in to delete a reservation.");
+  }
+  // 2. Authorization: Ensure the booking belongs to the logged-in guest
+  const guestBookings = await getBookings(session.user.guestId);
+  const guestBookingIds = guestBookings.map((booking) => booking.id);
+  if (!guestBookingIds.includes(bookingId)) {
+    throw new Error("You can only update your own reservations.");
+  }
+
+  // 3. Update booking details
+  const updateData = {
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations")?.slice(0, 1000) || "",
+  };
+
+  // 4. Mutate the database
+  const { error } = await supabase
+    .from("bookings")
+    .update(updateData)
+    .eq("id", bookingId)
+    .select()
+    .single();
+
+  if (error) throw new Error("Booking could not be updated");
+  // 5. Revalidate and redirect
+  revalidatePath(`/account/reservations/edit/${bookingId}`);
+  redirect("/account/reservations");
 }

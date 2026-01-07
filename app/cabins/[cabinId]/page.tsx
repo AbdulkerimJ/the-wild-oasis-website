@@ -3,12 +3,9 @@ import { Suspense } from "react";
 import Spinner from "@/app/_components/Spinner";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import CabinDetail from "@/app/_components/Cabin";
+import { CabinParams } from "@/app/_lib/types";
 
-type PageProps = {
-  params: Promise<{ cabinId: string }>;
-};
-
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: CabinParams) {
   const { cabinId } = await params;
   const { name, description } = await getCabin(Number(cabinId));
   return {
@@ -23,7 +20,7 @@ export async function generateStaticParams() {
   return ids;
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: CabinParams) {
   const { cabinId } = await params;
   const cabin = await getCabin(Number(cabinId));
 
