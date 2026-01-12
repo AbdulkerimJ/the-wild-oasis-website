@@ -2,6 +2,7 @@ import { getBookings } from "@/app/_lib/data-service";
 import ReservationCard from "../../_components/ReservationCard";
 import { auth } from "@/app/_lib/auth";
 import Link from "next/link";
+import ReservationList from "@/app/_components/ReservationList";
 export const metadata = {
   title: "Your Reservations",
   description: "Manage your cabin reservations.",
@@ -10,7 +11,6 @@ export const metadata = {
 export default async function Page() {
   const session = await auth();
   const bookings = await getBookings(session?.user?.guestId);
-  console.log(bookings[0]);
   return (
     <div>
       <h2 className="font-semibold text-2xl text-accent-400 mb-7">
@@ -25,11 +25,7 @@ export default async function Page() {
           </Link>
         </p>
       ) : (
-        <ul className="space-y-6">
-          {bookings.map((booking) => (
-            <ReservationCard booking={booking} key={booking.id} />
-          ))}
-        </ul>
+        <ReservationList bookings={bookings} />
       )}
     </div>
   );
